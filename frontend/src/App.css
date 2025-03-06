@@ -1,0 +1,546 @@
+/* Estilos generales para una concesionaria de autos premium */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #1e293b;
+  --primary-gradient: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  --secondary-color: #0ea5e9;
+  --accent-color: #f43f5e;
+  --text-color: #1e293b;
+  --light-text-color: #64748b;
+  --background-light: #f1f5f9;
+  --background-dark: #e2e8f0;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.15);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+
+.login-container, .register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+.login-container::before, .register-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5);
+  z-index: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-card h1 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.auth-card h2 {
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: var(--light-text-color);
+  font-weight: 400;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auth-card form {
+  margin-top: 20px;
+}
+
+input {
+  margin-bottom: 18px;
+  padding: 15px 20px;
+  font-size: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  transition: var(--transition);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+button {
+  padding: 12px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  background: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.auth-link {
+  margin-top: 25px;
+  font-size: 15px;
+  color: var(--light-text-color);
+}
+
+.auth-link a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  background-color: rgba(244, 63, 94, 0.1);
+  padding: 12px;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ====== ESTILOS DEL DASHBOARD DE VEHÍCULOS ====== */
+.dashboard-container {
+  background-color: var(--background-light);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  color: var(--text-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dashboard-actions {
+  display: flex;
+}
+
+.dashboard-actions button {
+  margin-left: 10px;
+  background-color: var(--secondary-color);
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.dashboard-actions .btn-danger {
+  background-color: var(--accent-color);
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 25px;
+  width: 100%;
+}
+
+.dashboard-form {
+  background-color: white;
+  padding: 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  height: fit-content;
+}
+
+.dashboard-form h2 {
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.dashboard-form input, 
+.dashboard-form select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  font-size: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--border-radius);
+  background-color: #f8fafc;
+  transition: var(--transition);
+}
+
+.dashboard-form input:focus, 
+.dashboard-form select:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.dashboard-form button {
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+
+/* Estilo para la sección de vehículos */
+.vehicles-list {
+  width: 100%;
+}
+
+.vehicles-list h2 {
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.vehicle-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.vehicle-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.vehicle-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.vehicle-title {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.vehicle-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: var(--light-text-color);
+  font-size: 14px;
+}
+
+.vehicle-info span {
+  background-color: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.vehicle-actions {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.vehicle-actions button {
+  padding: 8px;
+  font-size: 13px;
+}
+
+.vehicle-actions .btn-danger {
+  background-color: var(--accent-color);
+}
+
+/* Estilos para el mercado de vehículos */
+.purchase-container {
+  background-color: var(--background-light);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.purchase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 30px;
+}
+
+.purchase-header h1 {
+  font-size: 24px;
+  color: var(--text-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.market-vehicles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+.market-vehicle-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.market-vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.market-vehicle-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.market-vehicle-details {
+  padding: 20px;
+}
+
+.market-vehicle-title {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.market-vehicle-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.market-vehicle-year {
+  font-size: 14px;
+  color: var(--light-text-color);
+  background-color: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.market-vehicle-type {
+  font-size: 14px;
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.market-vehicle-actions {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.market-vehicle-actions button {
+  width: 100%;
+  background-color: #16a34a;
+}
+
+.market-vehicle-actions button:hover {
+  background-color: #15803d;
+}
+
+/* Estilos para loading y mensajes */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.loading-spinner {
+  border: 3px solid rgba(14, 165, 233, 0.1);
+  border-top: 3px solid var(--secondary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading p {
+  font-size: 16px;
+  color: var(--light-text-color);
+}
+
+.message {
+  background-color: white;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-color);
+  margin: 20px 0;
+}
+
+/* Diseño adaptable */
+@media (max-width: 992px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .vehicles-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  .market-vehicles {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header, .purchase-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .dashboard-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .dashboard-actions button {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  
+  .vehicles-grid, .market-vehicles {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicles-grid, .market-vehicles {
+    grid-template-columns: 1fr;
+  }
+  
+  .auth-card {
+    padding: 30px 20px;
+    margin: 0 15px;
+  }
+  
+  .dashboard-container, .purchase-container {
+    padding: 15px;
+  }
+  
+  .vehicle-actions {
+    grid-template-columns: 1fr;
+  }
+}
