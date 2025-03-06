@@ -1,0 +1,61 @@
+services:
+  # Servicio de Base de Datos
+  - type: pserv
+    name: venta-autos-db
+    plan: free
+    env: docker
+    disk:
+      name: mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
+    dockerfilePath: ./docker-compose.prod.yml
+    dockerContext: .
+    dockerCommand: mysql
+    envVars:
+      - key: DB_PASSWORD
+        generateValue: true
+
+  # Servicio Backend
+  - type: web
+    name: venta-autos-api
+    env: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DB_HOST
+        fromService:
+          name: venta-autos-db
+          type: pserv
+          property: host
+      - key: DB_USER
+        value: root
+      - key: DB_PASSWORD
+        fromService:
+          name: venta-autos-db
+          type: pserv
+          envVarKey: DB_PASSWORD
+      - key: DB_NAME
+        value: base_de_datos
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+    healthCheckPath: /
+    autoDeploy: true
+
+  # Servicio Frontend
+  - type: web
+    name: venta-autos-frontend
+    env: docker
+    plan: free
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          name: venta-autos-api
+          type: web
+          property: url
+    healthCheckPath: /
+    autoDeploy: true
